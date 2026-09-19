@@ -1,8 +1,8 @@
-reduce2 v.2.14.0, run 2026-09-19 16:28:27
+reduce2 v.2.14.0, run 2026-09-19 17:09:33
  /home/marek/Projects/docking/.venv/lib/python3.12/site-packages/mmtbx/command_line/reduce2.py data/1IEP_receptor.pdb approach=add add_flip_movers=True
   Time to get coordinates: 0.003
   Time to compute bond proxies: 0.000
-  Time to compute bonded neighbor lists: 0.025
+  Time to compute bonded neighbor lists: 0.029
 Overriding radius for C: 1.65 (was 1.7)
 Overriding radius for C: 1.65 (was 1.7)
 Overriding radius for CG: 1.65 (was 1.7)
@@ -817,11 +817,11 @@ Overriding radius for CD: 1.65 (was 1.7)
  Added MoverSingleHydrogenRotator 93 to chain A THR 495 HG1 with 1 potential nearby acceptors
  Inserted 93 Movers
  Marked 0 atoms for deletion
-  Time to place movers: 0.146
-  Time to initialize Movers: 0.001
+  Time to place movers: 0.147
+  Time to initialize Movers: 0.002
  Found 83 Cliques (76 are singletons); largest Clique size = 5
   Time to compute interaction graph: 0.005
-  Time to determine excluded atoms: 0.038
+  Time to determine excluded atoms: 0.039
   Time to construct dot scorer: 0.000
   Time to construct OptimizerC: 0.001
  Singleton optimized with score 0.23
@@ -910,7 +910,7 @@ Overriding radius for CD: 1.65 (was 1.7)
  Clique optimized with score 4.17
   Time to optimize cliques (coarse): 0.023
  Fine optimization on all Movers
-  Time to optimize all Movers (fine): 0.028
+  Time to optimize all Movers (fine): 0.027
  BEGIN REPORT: Model -1 Alt '':
   Set of 5 Movers:  Totals: initial score -48.98, final score -9.79
    HisFlip at chain A HIS 295 NE2 Initial score: -54.22 final score: -15.71 pose Unflipped HD1NotPlaced HE2Placed . BothClash
@@ -1019,5 +1019,5 @@ Overriding radius for CD: 1.65 (was 1.7)
  Deleting Hydrogens tagged by Histidine Movers
   Time to delete Hydrogens: 0.000
  Calculated : cached atom scores: 5852 : 1082; fraction calculated 0.84
-Time to Add Hydrogen = 1.679 sec
-Time to Optimize = 0.347 sec
+Time to Add Hydrogen = 1.707 sec
+Time to Optimize = 0.353 sec
