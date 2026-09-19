@@ -4,3 +4,4 @@ pandas
 meeko
 scipy
 gemmi
+prody
