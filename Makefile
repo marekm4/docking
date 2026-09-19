@@ -1,8 +1,8 @@
 scrub:
-	scrub.py "$$(cat data/Imatinib.smiles)" -o data/Imatinib_scrubbed.sdf --ph 6 --skip_tautomer
+	scrub.py "$$(cat data/LIGAND.smiles)" -o data/LIGAND_scrubbed.sdf --ph 6 --skip_tautomer
 
 ligand:
-	mk_prepare_ligand.py -i data/Imatinib_scrubbed.sdf -o data/Imatinib.pdbqt
+	mk_prepare_ligand.py -i data/LIGAND_scrubbed.sdf -o data/LIGAND.pdbqt
 
 atoms:
 	python atoms.py data/1IEP.pdb data/1IEP_receptor_atoms.pdb
@@ -19,7 +19,7 @@ receptor:
 	mk_prepare_receptor.py -i data/1IEP_receptorFH.pdb -o data/1IEP_receptor -p -v --box_center $$(python center.py data/1IEP.pdb) --box_size 20 20 20
 
 docking:
-	./vina --receptor data/1IEP_receptor.pdbqt --ligand data/Imatinib.pdbqt --config data/1IEP_receptor.box.txt --exhaustiveness 8 --out data/1IEP_Imatinib_vina_out.pdbqt
+	./vina --receptor data/1IEP_receptor.pdbqt --ligand data/LIGAND.pdbqt --config data/1IEP_receptor.box.txt --exhaustiveness 8 --out data/1IEP_LIGAND_vina_out.pdbqt
 
 score:
-	grep RESULT data/1IEP_Imatinib_vina_out.pdbqt | head -n 1 | awk '{print $$4}'
+	grep RESULT data/1IEP_LIGAND_vina_out.pdbqt | head -n 1 | awk '{print $$4}'
