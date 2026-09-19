@@ -20,3 +20,6 @@ receptor:
 
 docking:
 	./vina --receptor data/1IEP_receptor.pdbqt --ligand data/Imatinib.pdbqt --config data/1IEP_receptor.box.txt --exhaustiveness 8 --out data/1IEP_Imatinib_vina_out.pdbqt
+
+score:
+	grep RESULT data/1IEP_Imatinib_vina_out.pdbqt | head -n 1 | awk '{print $$4}'
