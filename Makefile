@@ -14,3 +14,6 @@ cryst:
 reduce:
 	MMTBX_CCP4_MONOMER_LIB="geostd" mmtbx.reduce2 data/1IEP_receptor.pdb approach=add add_flip_movers=True
 	mv 1IEP* data
+
+receptor:
+	mk_prepare_receptor.py -i data/1IEP_receptorFH.pdb -o data/1IEP_receptor -p -v --box_center $$(python center.py data/1IEP.pdb) --box_size 20 20 20
