@@ -5,21 +5,21 @@ ligand:
 	mk_prepare_ligand.py -i data/LIGAND_scrubbed.sdf -o data/LIGAND.pdbqt
 
 atoms:
-	python atoms.py data/1IEP.pdb data/1IEP_receptor_atoms.pdb
+	python atoms.py data/TARGET.pdb data/TARGET_receptor_atoms.pdb
 
 cryst:
-	grep CRYST1 data/1IEP.pdb > data/1IEP_receptor.pdb
-	cat data/1IEP_receptor_atoms.pdb >> data/1IEP_receptor.pdb
+	grep CRYST1 data/TARGET.pdb > data/TARGET_receptor.pdb
+	cat data/TARGET_receptor_atoms.pdb >> data/TARGET_receptor.pdb
 
 reduce:
-	MMTBX_CCP4_MONOMER_LIB="geostd" mmtbx.reduce2 data/1IEP_receptor.pdb approach=add add_flip_movers=True
-	mv 1IEP* data
+	MMTBX_CCP4_MONOMER_LIB="geostd" mmtbx.reduce2 data/TARGET_receptor.pdb approach=add add_flip_movers=True
+	mv TARGET* data
 
 receptor:
-	mk_prepare_receptor.py -i data/1IEP_receptorFH.pdb -o data/1IEP_receptor -p -v --box_center $$(python center.py data/1IEP.pdb) --box_size 20 20 20
+	mk_prepare_receptor.py -i data/TARGET_receptorFH.pdb -o data/TARGET_receptor -p -v --box_center $$(python center.py data/TARGET.pdb) --box_size 20 20 20
 
 docking:
-	./vina --receptor data/1IEP_receptor.pdbqt --ligand data/LIGAND.pdbqt --config data/1IEP_receptor.box.txt --exhaustiveness 8 --out data/1IEP_LIGAND_vina_out.pdbqt
+	./vina --receptor data/TARGET_receptor.pdbqt --ligand data/LIGAND.pdbqt --config data/TARGET_receptor.box.txt --exhaustiveness 8 --out data/TARGET_LIGAND_vina_out.pdbqt
 
 score:
-	grep RESULT data/1IEP_LIGAND_vina_out.pdbqt | head -n 1 | awk '{print $$4}'
+	grep RESULT data/TARGET_LIGAND_vina_out.pdbqt | head -n 1 | awk '{print $$4}'
