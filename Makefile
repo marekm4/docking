@@ -17,3 +17,6 @@ reduce:
 
 receptor:
 	mk_prepare_receptor.py -i data/1IEP_receptorFH.pdb -o data/1IEP_receptor -p -v --box_center $$(python center.py data/1IEP.pdb) --box_size 20 20 20
+
+docking:
+	./vina --receptor data/1IEP_receptor.pdbqt --ligand data/Imatinib.pdbqt --config data/1IEP_receptor.box.txt --exhaustiveness 8 --out data/1iep_Imatinib_vina_out.pdbqt
