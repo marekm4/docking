@@ -1,4 +1,6 @@
-joblib==1.6.0
-meeko==0.8.0
-molscrub==0.3.0
-pandas==3.0.6
+molscrub
+joblib
+pandas
+meeko
+scipy
+gemmi
