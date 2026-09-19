@@ -5,3 +5,4 @@ meeko
 scipy
 gemmi
 prody
+cctbx-base
