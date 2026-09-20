@@ -1,5 +1,5 @@
-reduce2 v.2.14.0, run 2026-09-19 20:37:08
- /Users/marek/Biology/docking/.venv/lib/python3.14/site-packages/mmtbx/command_line/reduce2.py data/TARGET_receptor.pdb approach=add add_flip_movers=True
+reduce2 v.2.14.0, run 2026-09-20 11:52:33
+ /home/marek/Projects/docking/.venv/lib/python3.12/site-packages/mmtbx/command_line/reduce2.py data/TARGET_receptor.pdb approach=add add_flip_movers=True
   Time to get coordinates: 0.001
   Time to compute bond proxies: 0.000
   Time to compute bonded neighbor lists: 0.004
@@ -297,9 +297,9 @@ Marking CZ as an aromatic-ring acceptor
 Overriding radius for C: 1.65 (was 1.7)
 Overriding radius for C: 1.65 (was 1.7)
 Overriding radius for CG: 1.65 (was 1.7)
-  Time to get extra atom info: 0.021
+  Time to get extra atom info: 0.018
   Time to select rotatable hydrogens: 0.000
-  Time to compute alternates: 0.002
+  Time to compute alternates: 0.003
  Running Reduce optimization on model index -1, alternate 'A'
    bondedNeighborDepth = 4
    probeRadius = 0.25
@@ -308,7 +308,7 @@ Overriding radius for CG: 1.65 (was 1.7)
    minOccupancy = 0.02
    preferenceMagnitude = 1.0
   Time to construct spatial query: 0.000
-  Time to place water phantom Hydrogens: 0.001
+  Time to place water phantom Hydrogens: 0.002
   Time to fixup explicit doners: 0.001
  Added MoverAmideFlip 1 to chain A ASN 5
  Used MoverTetrahedralMethylRotator to stagger chain A LEU 8 CD1
@@ -432,11 +432,11 @@ Overriding radius for CG: 1.65 (was 1.7)
  Added MoverSingleHydrogenRotator 45 to chain A TYR 195 HH with 2 potential nearby acceptors
  Inserted 45 Movers
  Marked 0 atoms for deletion
-  Time to place movers: 0.050
-  Time to initialize Movers: 0.002
+  Time to place movers: 0.070
+  Time to initialize Movers: 0.001
  Found 39 Cliques (34 are singletons); largest Clique size = 3
-  Time to compute interaction graph: 0.004
-  Time to determine excluded atoms: 0.017
+  Time to compute interaction graph: 0.002
+  Time to determine excluded atoms: 0.020
   Time to construct dot scorer: 0.000
   Time to construct OptimizerC: 0.000
  Singleton optimized with score 0.20
@@ -473,7 +473,7 @@ Overriding radius for CG: 1.65 (was 1.7)
  Singleton optimized with score 2.49
  Singleton optimized with score 1.74
  Singleton optimized with score 0.02
-  Time to optimize singletons (coarse): 0.008
+  Time to optimize singletons (coarse): 0.010
  Clique optimized with score 28.94
  Clique optimized with score 35.47
  Clique optimized with score 0.99
@@ -481,7 +481,7 @@ Overriding radius for CG: 1.65 (was 1.7)
  Clique optimized with score 19.54
   Time to optimize cliques (coarse): 0.006
  Fine optimization on all Movers
-  Time to optimize all Movers (fine): 0.008
+  Time to optimize all Movers (fine): 0.010
  BEGIN REPORT: Model -1 Alt 'A':
   Set of 3 Movers:  Totals: initial score 24.31, final score 36.50
    NH3Rotator at chain A LYS 16 NZ Initial score: 19.44 final score: 21.38 pose Angle 172.0 deg . .
@@ -536,9 +536,9 @@ Overriding radius for CG: 1.65 (was 1.7)
    SingleHydrogenRotator at chain A TYR 195 HH Initial score: 0.00 final score: 0.02 pose Angle -2.6 deg . .
  END REPORT
  FixUp on all Movers
-  Time to fix up Movers: 0.006
+  Time to fix up Movers: 0.005
  Deleting Hydrogens tagged by Histidine Movers
   Time to delete Hydrogens: 0.000
  Calculated : cached atom scores: 2139 : 103; fraction calculated 0.95
-Time to Add Hydrogen = 0.760 sec
-Time to Optimize = 0.133 sec
+Time to Add Hydrogen = 1.050 sec
+Time to Optimize = 0.156 sec
