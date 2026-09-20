@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from docking import ligand, receptor, docking, score
+from docking import ligand, receptor, docking, affinity
 
 work_dir = Path("data")
 
@@ -15,5 +15,5 @@ Bcl_xL = receptor(work_dir, "Bcl-xL", "2YXJ", 30)
 Bcl_xL_ABT_737 = docking(work_dir, Bcl_xL, ABT_737, 8)
 Bcl_xL_Navitoclax = docking(work_dir, Bcl_xL, Navitoclax, 8)
 
-print(score(work_dir, Bcl_xL_ABT_737))
-print(score(work_dir, Bcl_xL_ABT_737))
+print(affinity(work_dir, Bcl_xL_ABT_737))
+print(affinity(work_dir, Bcl_xL_Navitoclax))
