@@ -113,3 +113,12 @@ def affinity(dir, docking):
             score = line.split()[3]
             break
     return score
+
+
+def view(dir, molecule):
+    if molecule.endswith("_receptor.pdbqt"):
+        return str(dir / molecule.replace("_receptor.pdbqt", "_receptor.pdb"))
+    path = dir / molecule.replace('.pdbqt', '_scrubbed.sdf')
+    if path.exists():
+        return str(path)
+    return str(dir / molecule)
