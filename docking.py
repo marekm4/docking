@@ -35,8 +35,8 @@ def ligand(dir, smiles, ph):
     return name_pdbqt
 
 
-def receptor(dir, id, box):
-    name = hashlib.md5(f"{id}_{box}".encode()).hexdigest()
+def receptor(dir, id, x, y, z):
+    name = hashlib.md5(f"{id}_{x}_{y}_{z}".encode()).hexdigest()
 
     name_pdb = f"{name}.pdb"
     file_pdb = dir / name_pdb
@@ -79,15 +79,15 @@ def receptor(dir, id, box):
         atoms_from_pdb = parsePDB(str(file_pdb))
         ligand_selection = "chain A"
         ligand_atoms = atoms_from_pdb.select(ligand_selection)
-        x, y, z = calcCenter(ligand_atoms)
+        center_x, center_y, center_z = calcCenter(ligand_atoms)
         subprocess.run([
             "mk_prepare_receptor.py",
             "-i", name_receptor_FH,
             "-o", f"{name}_receptor",
             "-p", "-v",
             "--default_altloc", "A",
-            "--box_center", str(x), str(y), str(z),
-            "--box_size", str(box), str(box), str(box)
+            "--box_center", str(center_x), str(center_y), str(center_z),
+            "--box_size", str(x), str(y), str(z)
         ], cwd=dir)
 
     return name_receptor_pdbqt
