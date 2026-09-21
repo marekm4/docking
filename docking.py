@@ -94,7 +94,7 @@ def receptor(dir, id, box):
 
 
 def docking(dir, receptor, ligand, exhaustiveness):
-    out_name = f"{receptor.replace("_receptor.pdbqt", "")}_{ligand.replace(".pdbqt", "")}_vina_out.pdbqt"
+    out_name = hashlib.md5(f"{exhaustiveness}_{receptor.replace("_receptor.pdbqt", "")}_{ligand.replace(".pdbqt", "")}".encode()).hexdigest() + ".pdbqt"
     if not (dir / out_name).exists():
         subprocess.run([
             "../vina",
