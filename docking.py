@@ -1,12 +1,14 @@
+import hashlib
 import os
 import subprocess
 from urllib.request import urlretrieve
 
 from prody import parsePDB, writePDB, calcCenter
-from pygments.lexers.sql import name_between_backtick_re
 
 
-def ligand(dir, name, smiles, ph):
+def ligand(dir, smiles, ph):
+    name = hashlib.md5(f"{ph}_{smiles}".encode()).hexdigest()
+
     name_smiles = f"{name}.smiles"
     file_smiles = dir / name_smiles
     if not file_smiles.exists():
@@ -33,7 +35,9 @@ def ligand(dir, name, smiles, ph):
     return name_pdbqt
 
 
-def receptor(dir, name, id, box):
+def receptor(dir, id, box):
+    name = hashlib.md5(f"{id}_{box}".encode()).hexdigest()
+
     name_pdb = f"{name}.pdb"
     file_pdb = dir / name_pdb
     if not file_pdb.exists():
