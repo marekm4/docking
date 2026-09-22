@@ -3,7 +3,7 @@ import os
 import subprocess
 from urllib.request import urlretrieve
 
-from prody import parsePDB, writePDB, calcCenter
+from prody import parsePDB, writePDB
 
 
 def ligand(dir, smiles, ph):
@@ -35,8 +35,8 @@ def ligand(dir, smiles, ph):
     return name_pdbqt
 
 
-def receptor(dir, id, x, y, z):
-    name = hashlib.md5(f"{id}_{x}_{y}_{z}".encode()).hexdigest()
+def receptor(dir, id, center, size):
+    name = hashlib.md5(f"{id}_{center[0]}_{center[1]}_{center[2]}_{size[0]}_{size[1]}_{size[2]}".encode()).hexdigest()
 
     name_pdb = f"{name}.pdb"
     file_pdb = dir / name_pdb
@@ -76,18 +76,14 @@ def receptor(dir, id, x, y, z):
     name_receptor_pdbqt = f"{name}_receptor.pdbqt"
     file_receptor_pdbqt = dir / name_receptor_pdbqt
     if not file_receptor_pdbqt.exists():
-        atoms_from_pdb = parsePDB(str(file_pdb))
-        ligand_selection = "chain A"
-        ligand_atoms = atoms_from_pdb.select(ligand_selection)
-        center_x, center_y, center_z = calcCenter(ligand_atoms)
         subprocess.run([
             "mk_prepare_receptor.py",
             "-i", name_receptor_FH,
             "-o", f"{name}_receptor",
             "-p", "-v",
             "--default_altloc", "A",
-            "--box_center", str(center_x), str(center_y), str(center_z),
-            "--box_size", str(x), str(y), str(z)
+            "--box_center", str(center[0]), str(center[1]), str(center[2]),
+            "--box_size", str(size[0]), str(size[1]), str(size[2])
         ], cwd=dir)
 
     return name_receptor_pdbqt
@@ -104,6 +100,14 @@ def docking(dir, receptor, ligand, exhaustiveness):
             "--exhaustiveness", str(exhaustiveness),
             "--out", out_name
         ], cwd=dir)
+
+    export_name = out_name.replace(".pdbqt", ".sdf")
+    if not (dir / export_name).exists():
+        subprocess.run([
+            "mk_export.py", out_name,
+            "-s", export_name
+        ], cwd=dir)
+
     return out_name
 
 
@@ -118,7 +122,7 @@ def affinity(dir, docking):
 def view(dir, molecule):
     if molecule.endswith("_receptor.pdbqt"):
         return str(dir / molecule.replace("_receptor.pdbqt", "_receptor.pdb"))
-    path = dir / molecule.replace('.pdbqt', '_scrubbed.sdf')
+    path = dir / molecule.replace(".pdbqt", "_scrubbed.sdf")
     if path.exists():
         return str(path)
-    return str(dir / molecule)
+    return str(dir / molecule.replace(".pdbqt", ".sdf"))
