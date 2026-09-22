@@ -116,7 +116,7 @@ def affinity(dir, docking):
         if "RESULT" in line:
             score = line.split()[3]
             break
-    return score
+    return float(score)
 
 
 def view(dir, molecule):
