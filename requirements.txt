@@ -8,3 +8,6 @@ prody
 cctbx-base
 py3Dmol
 jupyter
+torch
+torch_geometric
+chemprop
