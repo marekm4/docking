@@ -1,0 +1,19 @@
+[project]
+name = "docking"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "cctbx-base>=2025.11",
+    "chemprop>=2.3.1",
+    "gemmi>=0.7.5",
+    "joblib>=1.6.0",
+    "jupyter>=1.1.1",
+    "meeko>=0.8.0",
+    "molscrub>=0.3.0",
+    "pandas>=3.0.6",
+    "prody>=2.6.1",
+    "py3dmol>=2.5.5",
+    "scipy>=1.18.1",
+    "torch>=2.14.1",
+    "torch-geometric>=2.8.1",
+]
